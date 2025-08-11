@@ -24,4 +24,20 @@ public class AccountManagerTest {
 
     // TODO: Write tests that cover all scenarios for the withdraw method
 
+
+    @Test
+    public void withdraw_SHOULD_returnInsufficientBalance_WHEN_customerCreditIsNotAllowedAndBalanceIsInsufficient() {
+        // Arrange
+        Customer customer = new Customer();
+        customer.setBalance(500);
+        customer.setCreditAllowed(false);
+        String expectedResultMessage = "insufficient account balance";
+        AccountManager accountManager = new AccountManagerImpl();
+
+        // Act
+        String actualResult = accountManager.withdraw(customer, 700);
+
+        // Assert
+        Assertions.assertEquals(expectedResultMessage, actualResult);
+    }
 }
