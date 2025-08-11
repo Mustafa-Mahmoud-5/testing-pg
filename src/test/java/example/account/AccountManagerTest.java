@@ -39,5 +39,26 @@ public class AccountManagerTest {
 
         // Assert
         Assertions.assertEquals(expectedResultMessage, actualResult);
+        Assertions.assertEquals(500, customer.getBalance());
     }
+
+    @Test
+    public void withdraw_SHOULD_succeed_WHEN_customerHasCreditAllowedAndIsVIP() {
+        // Arrange
+        Customer customer = new Customer();
+        customer.setBalance(500);
+        customer.setCreditAllowed(true);
+        customer.setVip(true);
+        String expectedResultMessage = "success";
+        AccountManager accountManager = new AccountManagerImpl();
+
+
+        // Act
+        String actualResult = accountManager.withdraw(customer, 700);
+
+        // Assert
+        Assertions.assertEquals(expectedResultMessage, actualResult);
+        Assertions.assertEquals(500-700, customer.getBalance());
+    }
+
 }
