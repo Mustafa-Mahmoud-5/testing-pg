@@ -63,17 +63,17 @@ public class AccountManagerTest {
 
 
     @Test
-    public void withdraw_SHOULD_returnInsufficientBalance_WHEN_customerCreditedAmountHitsMaximumCreditAndNotVIP() {
+    public void withdraw_SHOULD_returnMaximumCreditExceeded_WHEN_customerCreditedAmountHitsMaximumCreditAndNotVIP() {
         // Arrange
         Customer customer = new Customer();
         customer.setBalance(500);
         customer.setCreditAllowed(true);
         customer.setVip(false);
-        String expectedResultMessage = "insufficient account balance";
+        String expectedResultMessage = "maximum credit exceeded";
         AccountManager accountManager = new AccountManagerImpl();
 
         // Act
-        String actualResult = accountManager.withdraw(customer, AccountManagerImpl.getMaxCredit() + 500);
+        String actualResult = accountManager.withdraw(customer, AccountManagerImpl.getMaxCredit() + 501);
 
 
         // Assert
