@@ -61,4 +61,23 @@ public class AccountManagerTest {
         Assertions.assertEquals(500-700, customer.getBalance());
     }
 
+
+    @Test
+    public void withdraw_SHOULD_returnInsufficientBalance_WHEN_customerCreditedAmountHitsMaximumCreditAndNotVIP() {
+        // Arrange
+        Customer customer = new Customer();
+        customer.setBalance(500);
+        customer.setCreditAllowed(true);
+        customer.setVip(false);
+        String expectedResultMessage = "insufficient account balance";
+        AccountManager accountManager = new AccountManagerImpl();
+
+        // Act
+        String actualResult = accountManager.withdraw(customer, AccountManagerImpl.getMaxCredit() + 500);
+
+
+        // Assert
+        Assertions.assertEquals(expectedResultMessage, actualResult);
+        Assertions.assertEquals(500, customer.getBalance());
+    }
 }

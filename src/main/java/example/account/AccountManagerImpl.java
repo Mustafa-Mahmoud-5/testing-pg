@@ -21,4 +21,8 @@ public class AccountManagerImpl implements AccountManager {
         customer.setBalance(expectedBalance);
         return "success";
     }
+
+    public static int getMaxCredit() {
+        return MAX_CREDIT;
+    }
 }
