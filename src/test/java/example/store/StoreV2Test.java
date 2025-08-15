@@ -26,4 +26,22 @@ public class StoreV2Test {
         Assertions.assertEquals(3, product.getQuantity());
     }
 
+    // test if the dependency(AccountManager) didn't pass
+    @Test
+    void buy_SHOULD_throwRuntimeException_WHEN_accountManagerWithdrawFails() {
+        // Arrange
+        Customer customer = new Customer();
+        Product product = new Product();
+        product.setQuantity(5);
+        AccountManager accountManager = mock(AccountManager.class); // interfaceName.Class
+        when(accountManager.withdraw(any(), anyInt())).thenReturn("failed"); // any string other than "success"
+
+        Store store = new StoreImpl(accountManager);
+
+        // Assert
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            // Act
+            store.buy(product, customer);
+        });
+    }
 }
