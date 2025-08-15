@@ -80,4 +80,24 @@ public class AccountManagerTest {
         Assertions.assertEquals(expectedResultMessage, actualResult);
         Assertions.assertEquals(500, customer.getBalance());
     }
+
+    // expected will be negative below maximum and the customer has creditAllowed => should pas
+    @Test
+    public void withdraw_SHOULD_pass_WHEN_customerHasCreditAllowedAndExpectedIsNegativeBelowMaxCredit() {
+        // Arrange
+        Customer customer = new Customer();
+        customer.setBalance(500);
+        customer.setCreditAllowed(true);
+        customer.setVip(false);
+        String expectedResultMessage = "success";
+        AccountManager accountManager = new AccountManagerImpl();
+
+        // Act
+        String actualResult = accountManager.withdraw(customer, AccountManagerImpl.getMaxCredit());
+
+
+        // Assert
+        Assertions.assertEquals(expectedResultMessage, actualResult);
+        Assertions.assertEquals(500-AccountManagerImpl.getMaxCredit(), customer.getBalance());
+    }
 }
