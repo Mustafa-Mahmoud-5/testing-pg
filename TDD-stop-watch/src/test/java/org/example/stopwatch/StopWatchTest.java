@@ -9,7 +9,7 @@ import java.security.InvalidParameterException;
 /*
     DONE: Create a stopwatch that records minutes
     DONE: negative input should be ignored
-    if minutes reached 60 it should increase hours
+    DONE: if minutes reached 60 it should increase hours
     if hours reached 24 it should increase days
     days may be increased according to daily working hours
 
@@ -59,5 +59,27 @@ public class StopWatchTest {
         // I do only care about the affect of minutes on hours not days
         Assertions.assertEquals(5, stopWatch.getMinutes());
         Assertions.assertEquals(2, stopWatch.getHours());
+    }
+
+
+    @Test
+    public void addMinutes_SHOULD_increaseDays_WHEN_daysIsGreaterOrEqualDailyWorkingHours() {
+        // Arrange
+        StopWatch stopWatch = new StopWatch();
+        int dailyWorkingHours = StopWatch.getDailyWorkingHours();
+
+
+        // Act
+
+        // make it 2 days, 3 hours, 10 minutes all in minutes
+        int minutes = 10;
+        int hours = 3*60;
+        int days = 2 * dailyWorkingHours * 60;
+        stopWatch.addMinutes(minutes+hours+days);
+
+        // Assert
+        Assertions.assertEquals(minutes, stopWatch.getMinutes());
+        Assertions.assertEquals(hours, stopWatch.getHours());
+        Assertions.assertEquals(days, stopWatch.getDays());
     }
 }
