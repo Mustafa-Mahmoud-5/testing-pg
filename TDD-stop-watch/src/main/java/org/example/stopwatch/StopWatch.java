@@ -17,7 +17,11 @@ public class StopWatch {
     public void addMinutes(int minutes) {
         if(minutes < 0) throw new InvalidParameterException("minutes should be > 0");
 
-        this.minutes+= minutes;
+        int expectedMinutes = this.minutes + minutes;
+
+        this.minutes = expectedMinutes % 60;
+
+        this.hours = this.hours + expectedMinutes / 60;
     }
 
 
