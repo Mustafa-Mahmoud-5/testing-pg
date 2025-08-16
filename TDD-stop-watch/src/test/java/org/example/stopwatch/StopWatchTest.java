@@ -82,4 +82,23 @@ public class StopWatchTest {
         Assertions.assertEquals(3, stopWatch.getHours());
         Assertions.assertEquals(2, stopWatch.getDays());
     }
+
+    @Test
+    public void addMinutes_SHOULD_makeCorrectCalculation_WHEN_minutesAreIncreasedOnAnExistingState() {
+        // Arrange
+        StopWatch stopWatch = new StopWatch(3, 6, 5);
+
+        // Act
+        // add 3 hours and 5 minutes
+        int minutes = 5;
+        int hours = 3 * 60;
+        int days = 0;
+        stopWatch.addMinutes(minutes+hours+days);
+
+        // Arrange
+
+        Assertions.assertEquals(10, stopWatch.getMinutes());
+        Assertions.assertEquals(1, stopWatch.getMinutes());
+        Assertions.assertEquals(4, stopWatch.getMinutes());
+    }
 }
