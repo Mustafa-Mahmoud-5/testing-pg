@@ -98,7 +98,7 @@ public class StopWatchTest {
         // Arrange
 
         Assertions.assertEquals(10, stopWatch.getMinutes());
-        Assertions.assertEquals(1, stopWatch.getMinutes());
-        Assertions.assertEquals(4, stopWatch.getMinutes());
+        Assertions.assertEquals(1, stopWatch.getHours());
+        Assertions.assertEquals(4, stopWatch.getDays());
     }
 }

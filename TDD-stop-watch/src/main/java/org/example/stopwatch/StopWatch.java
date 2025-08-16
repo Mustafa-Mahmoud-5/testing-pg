@@ -17,6 +17,13 @@ public class StopWatch {
         this.hours = 0;
     }
 
+    StopWatch(int days, int hours, int minutes) {
+        if(days < 0 || hours < 0 || minutes < 0) throw new InvalidParameterException("minutes should be > 0");
+        this.days = days;
+        if(hours < DAILY_WORKING_HOURS) this.hours = hours;
+        if(minutes < 60) this.minutes =  minutes;
+    }
+
     public void addMinutes(int minutes) {
         if(minutes < 0) throw new InvalidParameterException("minutes should be > 0");
 
