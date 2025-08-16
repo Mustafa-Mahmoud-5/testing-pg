@@ -37,7 +37,7 @@ public class StopWatch {
 
 
         // days
-        this.days = expectedHours / DAILY_WORKING_HOURS;
+        this.days += expectedHours / DAILY_WORKING_HOURS;
     }
 
 
