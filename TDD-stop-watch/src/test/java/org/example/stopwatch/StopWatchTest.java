@@ -79,7 +79,7 @@ public class StopWatchTest {
 
         // Assert
         Assertions.assertEquals(minutes, stopWatch.getMinutes());
-        Assertions.assertEquals(hours, stopWatch.getHours());
-        Assertions.assertEquals(days, stopWatch.getDays());
+        Assertions.assertEquals(3, stopWatch.getHours());
+        Assertions.assertEquals(2, stopWatch.getDays());
     }
 }

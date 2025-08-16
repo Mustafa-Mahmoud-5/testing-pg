@@ -3,6 +3,9 @@ package org.example.stopwatch;
 import java.security.InvalidParameterException;
 
 public class StopWatch {
+
+    private static final int DAILY_WORKING_HOURS = 8;
+
     private int minutes;
     private int hours;
     private int days;
@@ -17,11 +20,17 @@ public class StopWatch {
     public void addMinutes(int minutes) {
         if(minutes < 0) throw new InvalidParameterException("minutes should be > 0");
 
+        // minutes
         int expectedMinutes = this.minutes + minutes;
-
         this.minutes = expectedMinutes % 60;
 
-        this.hours = this.hours + expectedMinutes / 60;
+        // hours
+        int expectedHours = this.hours + (expectedMinutes / 60);
+        this.hours = expectedHours % DAILY_WORKING_HOURS;
+
+
+        // days
+        this.days = expectedHours / DAILY_WORKING_HOURS;
     }
 
 
@@ -35,5 +44,9 @@ public class StopWatch {
 
     public int getHours() {
         return hours;
+    }
+
+    public static int getDailyWorkingHours() {
+        return DAILY_WORKING_HOURS;
     }
 }
