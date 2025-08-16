@@ -6,6 +6,13 @@ public class StopWatch {
     private int days;
 
 
+    StopWatch() {
+        this.minutes = 0;
+        this.days = 0;
+        this.hours = 0;
+    }
+
+
     public int getMinutes() {
         return minutes;
     }
