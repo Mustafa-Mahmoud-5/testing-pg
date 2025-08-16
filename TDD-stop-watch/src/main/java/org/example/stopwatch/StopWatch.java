@@ -18,15 +18,14 @@ public class StopWatch {
     }
 
     StopWatch(int days, int hours, int minutes) {
-        if(days < 0 || hours < 0 || minutes < 0) throw new InvalidParameterException("minutes should be > 0");
+        validateParams(days, hours, minutes);
         this.days = days;
         if(hours < DAILY_WORKING_HOURS) this.hours = hours;
         if(minutes < 60) this.minutes =  minutes;
     }
 
     public void addMinutes(int minutes) {
-        if(minutes < 0) throw new InvalidParameterException("minutes should be > 0");
-
+        validateParams(minutes, 0, 0);
         // minutes
         int expectedMinutes = this.minutes + minutes;
         this.minutes = expectedMinutes % 60;
@@ -55,5 +54,9 @@ public class StopWatch {
 
     public static int getDailyWorkingHours() {
         return DAILY_WORKING_HOURS;
+    }
+
+    private void validateParams(int minutes, int hours, int days) {
+        if(days < 0 || hours < 0 || minutes < 0) throw new InvalidParameterException("minutes should be > 0");
     }
 }
