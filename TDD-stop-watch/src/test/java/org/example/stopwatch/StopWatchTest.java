@@ -3,9 +3,11 @@ package org.example.stopwatch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.security.InvalidParameterException;
+
 
 /*
-    Create a stopwatch that records minutes
+    DONE: Create a stopwatch that records minutes
     negative input should be ignored
     if minutes reached 60 it should increase hours
     if hours reached 24 it should increase days
@@ -28,5 +30,18 @@ public class StopWatchTest {
         Assertions.assertEquals(0, stopWatch.getMinutes());
         Assertions.assertEquals(0, stopWatch.getHours());
         Assertions.assertEquals(0, stopWatch.getDays());
+    }
+
+    @Test
+    public void addMinutes_SHOULD_throwInvalidParameterException_WHEN_receiveNegativeParam() {
+        // Arrange
+        StopWatch stopWatch = new StopWatch();
+
+
+        // Assert
+        Assertions.assertThrows(InvalidParameterException.class, () -> {
+            // Act
+            stopWatch.addMinutes(-7);
+        });
     }
 }
